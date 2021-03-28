@@ -1,0 +1,166 @@
+/*Assume that processor refers to an object that provides a void method named process that takes no arguments. As it happens, the process method may throw one of several exceptions.
+
+Write some code that invokes the process method provided by the object associated with processor and arrange matters so that if process throws any exception, your code prints the message "process failure" to standard output and does nothing else in regard to the exception.
+
+Hint: use the catch (Exception ex) for the catch clause.
+*/
+
+try {
+  processor.process();
+}
+catch (Exception e) {
+  System.out.println("process failure");
+}
+
+Assume that processor refers to an object that provides a void method named process that takes no arguments. As it happens, the process method may throw one of several exceptions.
+
+Write some code that invokes the process method provided by the object associated with processor and arrange matters so that your code causes any exception thrown by process to be ignored.
+
+Hint: use the catch (Exception ex) and do nothing under the catch clause.
+
+try {
+  processor.process();
+}
+catch (Exception e) {
+  // just ignore the exception
+}
+
+Assume that success is a variable of type boolean that has been declared.
+
+Assume that processor refers to an object that provides a void method named process that takes no arguments. As it happens, the process method may throw one of several exceptions.
+
+Write some code that invokes the process method provided by the object associated with processor and arrange matters so that if any exception is thrown success to be set to false but otherwise it is set to true.
+
+Hint: use the catch (Exception ex) for the catch clause.
+
+success = true;
+try {
+  processor.process();
+}
+catch (Exception e) {
+  success = false;
+}
+
+Assume that validData is a variable of type boolean that has been declared. Assume that processor refers to an object that provides a void method named process that takes no arguments. As it happens, the process method may throw one of several exceptions, one of which is NumberFormatException.
+
+Write some code that invokes the process method provided by the object associated with processor and arrange matters so that any NumberFormatException that is thrown is caught and causes validData to be set to false.
+
+Hint: use the catch (Exception ex) for the catch clause.
+
+try {
+  processor.process();
+}
+catch (NumberFormatException nfe) {
+  validData = false;
+}
+
+The method shown below,
+
+public void makeJunk()
+{
+new File("junk").createNewFile();
+}
+
+generates compile error:
+
+"unreported exception java.io.IOException; must be caught or declared to be thrown".
+
+Without changing the behavior (any part of the method body) and without changing the number of arguments the function takes or its visibility, add the necessary code that will permit this code to compile without error.
+
+    public void makeJunk() throws IOException {
+      new File("junk").createNewFile();
+    }
+
+    public void makeJunk() {
+      try {
+        new File("junk").createNewFile();
+      }
+      catch (IOException e) {
+      }
+    }
+
+Assume that dataFailure is a variable of type Exception that has been declared and that references an Exception object.
+Write a statement that throws that Exception object.
+
+throw dataFailure;
+
+Assume that command is a variable of type String. Write a statement that throws an Exception with a message "null command" if command is null.
+
+    if (command == null)
+      throw new Exception("null command");
+
+Assume that command is a variable of type String.
+
+Write a statement that throws an Exception with a message "null command" if command is null and that throws an Exception with a message "empty command" if command equals the empty string.
+
+if (command == null)
+  throw new Exception("null command");
+else if (command.equals(""))
+  throw new Exception("empty command");
+
+Write a statement that declares a reference variable e suitable for holding a reference to an Exception object.
+
+Exception e;
+
+Write an expression whose value is a reference to a newly created Exception object with no specific message.
+
+new Exception()
+
+Write an expression whose value is a reference to a newly created Exception object whose message is "out of oil". 
+
+new Exception("out of oil")
+
+Assume that maxtries is a variable of type int that has been declared and given a value.
+
+Write an expression whose value is a reference to a newly created Exception object whose message is the string "attempt limit exceeded: " followed by the value of maxtries.
+
+new Exception("attempt limit exceeded: " + maxtries)
+
+Declare a variable logfileName that is suitable for holding the name of a file.
+
+String logfileName; 
+
+ Suppose a reference variable of type File called myFile has already been declared.
+
+Create an object of type File with the initial file name input.dat and assign it to the reference variable myFile.
+
+myFile = new File("input.dat");
+
+Declare a local variable output that is suitable for referring to an object that provides methods for writing to a text file.
+
+PrintWriter output;
+
+Write a sequence of statements that create a file named "greeting" and write a single line consisting of "Hello, World!" to that file. Make sure that the line has been flushed to the file and that any system resources used during the course of running these statements have been released.
+
+(Do not concern yourself with any possible exceptions here—assume they are handled elsewhere.)
+
+    PrintWriter output = new PrintWriter("greeting");
+    output.println("Hello, World!");
+    output.close();
+	
+Define a public static method named f2s that takes a single String argument, the name of a file.
+
+The method returns a (concievably very large!) String that is an exact copy of the contents of the file. If the file cannot be opened the method returns null.
+
+    public static String f2s(String fn) {
+      Scanner f = null;
+      try {
+        f = new Scanner(new File(fn));
+        String s = "";
+        while (f.hasNextLine())
+          s += f.nextLine() + "\n";
+        f.close();
+        return s;
+      }
+      catch (IOException ex) {
+        if (f != null) f.close();
+      }		
+      return null;
+    }
+
+Given an initialized String variable outfile, write a statement that declares a PrintWriter reference variable named output and initializes it to a reference to a newly created PrintWriter object associated with a file whose name is given by outfile.
+
+(Do not concern yourself with any possible exceptions here—assume they are handled elsewhere.)
+
+PrintWriter output = new PrintWriter(outfile);
+
